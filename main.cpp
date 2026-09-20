@@ -130,13 +130,136 @@ void fix_insert(Node* z) {
         fix_insert(new_node);
     }
 
-    Node* search(data_type value) {
-        Node* current = root;
-        while (current != nil and current->data != value) {
-            if (value < current->data) current = current->left;
-            else current = current->right;
+    Node* search(Node* node, data_type key) {
+        if (node == nil || key == node->data) {
+            return node;
         }
-        return current;
+        if (key < node->data) {
+            return search(node->left, key);
+        }
+        return search(node->right, key);
+    }
+
+    Node* search(data_type key) {
+        return search(root, key);
+    }
+
+    Node* minimum(Node* node) {
+        while (node->left != nil) {
+            node = node->left;
+        }
+        return node;
+    }
+
+    void transplant(Node* u, Node* v) {
+        if (u->parent == nil) {
+            root = v;
+        } else if (u == u->parent->left) {
+            u->parent->left = v;
+        } else {
+            u->parent->right = v;
+        }
+        v->parent = u->parent;
+    }
+
+    // Rebalanceo tras la eliminación (traducido de fix_delete)
+    void fix_delete(Node* x) {
+        while (x != root && x->color == BLACK) {
+            if (x == x->parent->left) {
+                Node* w = x->parent->right;
+                if (w->color == RED) {
+                    w->color = BLACK;
+                    x->parent->color = RED;
+                    rotate_left(x->parent);
+                    w = x->parent->right;
+                }
+                if (w->left->color == BLACK && w->right->color == BLACK) {
+                    w->color = RED;
+                    x = x->parent;
+                } else {
+                    if (w->right->color == BLACK) {
+                        w->left->color = BLACK;
+                        w->color = RED;
+                        rotate_right(w);
+                        w = x->parent->right;
+                    }
+                    w->color = x->parent->color;
+                    x->parent->color = BLACK;
+                    w->right->color = BLACK;
+                    rotate_left(x->parent);
+                    x = root;
+                }
+            } else {
+                Node* w = x->parent->left;
+                if (w->color == RED) {
+                    w->color = BLACK;
+                    x->parent->color = RED;
+                    rotate_right(x->parent);
+                    w = x->parent->left;
+                }
+                if (w->right->color == BLACK && w->left->color == BLACK) {
+                    w->color = RED;
+                    x = x->parent;
+                } else {
+                    if (w->left->color == BLACK) {
+                        w->right->color = BLACK;
+                        w->color = RED;
+                        rotate_left(w);
+                        w = x->parent->left;
+                    }
+                    w->color = x->parent->color;
+                    x->parent->color = BLACK;
+                    w->left->color = BLACK;
+                    rotate_right(x->parent);
+                    x = root;
+                }
+            }
+        }
+        x->color = BLACK;
+    }
+
+    // Eliminación del nodo (traducido de delete)
+    void remove(data_type data) {
+        Node* z = search(root, data);
+        if (z == nil) {
+            cout << "Value not found in the tree." << endl;
+            return;
+        }
+
+        Node* y = z;
+        Node* x;
+        Color y_original_color = y->color;
+
+        if (z->left == nil) {
+            x = z->right;
+            transplant(z, z->right);
+        } else if (z->right == nil) {
+            x = z->left;
+            transplant(z, z->left);
+        } else {
+            y = minimum(z->right);
+            y_original_color = y->color;
+            x = y->right;
+
+            if (y->parent == z) {
+                x->parent = y;
+            } else {
+                transplant(y, y->right);
+                y->right = z->right;
+                y->right->parent = y;
+            }
+
+            transplant(z, y);
+            y->left = z->left;
+            y->left->parent = y;
+            y->color = z->color;
+        }
+
+        delete z; // Liberación explícita de memoria requerida en C++
+
+        if (y_original_color == BLACK) {
+            fix_delete(x);
+        }
     }
 
     bool contains(data_type value) {
