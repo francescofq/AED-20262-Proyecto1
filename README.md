@@ -7,8 +7,8 @@ Video educativo que explica y demuestra visualmente el funcionamiento de un
 **Red-Black Tree**: un Árbol Binario de Búsqueda auto-balanceado mediante
 coloreado de nodos y rotaciones.
 
-> **Integrantes:** editar `animation/config_video.py` para que los nombres
-> aparezcan en la carátula y en los créditos del video.
+> **Integrantes:** Jose Ruiz Lam (202510050) · Osmar Vilchez Aguirre (202510122) ·
+> Francesco Ferrante Quino (202510174)
 
 ---
 
@@ -110,7 +110,7 @@ Salidas:
 | `animation/media/videos/parte1/1080p60/Parte1.mp4` | Parte 1 — Qué es, TDA y propiedades |
 | `animation/media/videos/parte2/1080p60/Parte2.mp4` | Parte 2 — Inserción y rebalanceo |
 | `animation/media/videos/parte3/1080p60/Parte3.mp4` | Parte 3 — Casos borde, eliminación y complejidad |
-| `video_final.mp4` | **el entregable**: las 3 partes concatenadas (~4 min) |
+| `video_final.mp4` | **el entregable**: las 3 partes concatenadas (~3:52) |
 
 ### Ajustar la duración
 
@@ -118,11 +118,13 @@ Las dos perillas al inicio de `animation/rbviz.py` controlan el ritmo de todo
 el video sin tocar ninguna escena:
 
 ```python
-TEMPO_TRACE = 1.269   # velocidad de la animación del árbol
-TEMPO_WAIT  = 1.269   # pausas de lectura
+TEMPO_TRACE = 1.20   # velocidad de la animación del árbol
+TEMPO_WAIT  = 1.00   # pausas de lectura
 ```
 
-Con ambas en `1.0` el video dura ~3:00; en `1.269`, ~4:00.
+Con los valores actuales el video dura 3:52. Subir `TEMPO_TRACE` hace las
+transiciones más lentas (y el video más largo); el límite del proyecto son
+5 minutos.
 
 ---
 
@@ -185,11 +187,11 @@ dónde se usa (`std::map`, `TreeMap`, planificador CFS de Linux).
 **Parte 2 — Inserción y rebalanceo**
 Por qué el nodo nuevo entra ROJO · **Caso 1** (tío rojo: solo recoloreo) ·
 **Caso 3** (tío negro, en línea: una rotación) · **Caso 2** (tío negro,
-zig-zag: se reduce al Caso 3) · once inserciones seguidas con los tres casos
+zig-zag: se reduce al Caso 3) · nueve inserciones seguidas con los tres casos
 encadenándose · resumen de los tres casos.
 
 **Parte 3 — Casos borde y complejidad**
-Caso borde: árbol vacío · Caso borde: peor caso de un BST (insertar 1…10 ya
+Caso borde: árbol vacío · Caso borde: peor caso de un BST (insertar 1…8 ya
 ordenado) · comparación con alturas **medidas** (100 000 claves: BST 100 000
 niveles vs. RBT 31) · búsqueda · eliminación cubriendo los **4 casos** de
 `fix_delete` · complejidad · conclusiones y créditos.

@@ -94,9 +94,9 @@ int main(int argc, char** argv) {
                    "Parte 2 - Caso 1: tío ROJO (solo recoloreo)");
 
     // Secuencia larga: se ven los tres casos encadenandose en una corrida real.
-    build_and_dump({7, 3, 18, 10, 22, 8, 11, 26, 2, 6, 13},
+    build_and_dump({7, 3, 18, 10, 22, 8, 11, 26, 2},
                    "traces/p2_secuencia.json",
-                   "Parte 2 - Once inserciones seguidas");
+                   "Parte 2 - Nueve inserciones seguidas");
 
     // ---------------- PARTE 3: casos borde, busqueda, eliminacion ----------------
     // Caso borde A: arbol vacio -> el primer nodo debe quedar NEGRO.
@@ -106,10 +106,10 @@ int main(int argc, char** argv) {
 
     // Caso borde B: peor caso de un BST (insercion ya ordenada).
     std::vector<int> ordenado;
-    for (int i = 1; i <= 10; ++i) ordenado.push_back(i);
+    for (int i = 1; i <= 8; ++i) ordenado.push_back(i);
     build_and_dump(ordenado,
                    "traces/p3_borde_ordenado.json",
-                   "Parte 3 - Caso borde: inserción en orden creciente 1..10");
+                   "Parte 3 - Caso borde: inserción en orden creciente 1..8");
 
     // Busqueda instrumentada sobre un arbol ya construido.
     {

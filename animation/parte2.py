@@ -75,9 +75,9 @@ class Parte2(RBScene):
     # ------------------------------------------------------------------
     def _rotulo(self, texto: str, color: str = MUTED) -> Text:
         return fit_width(
-            Text(texto, font_size=24, color=color)).move_to(DOWN * 2.45)
+            Text(texto, font_size=24, color=color)).move_to(DOWN * 2.50)
 
-    def _caso(self, trace: str, rotulo: str, cierre: str, speed: float = 0.85):
+    def _caso(self, trace: str, rotulo: str, cierre: str, speed: float = 1.00):
         evs = events_of(trace)
         rot = self._rotulo(rotulo)
         self.play(FadeIn(rot), run_time=0.35)
@@ -131,11 +131,11 @@ class Parte2(RBScene):
             if conteo.get(c))
 
         self.set_caption("Ahora los tres casos juntos, sobre un árbol que va creciendo.")
-        rot = self._rotulo("Insertando 7, 3, 18, 10, 22, 8, 11, 26, 2, 6, 13")
+        rot = self._rotulo("Insertando 7, 3, 18, 10, 22, 8, 11, 26, 2")
         self.play(FadeIn(rot), run_time=0.35)
 
         tree = TreeView(self).fit(evs)
-        self.play_trace(tree, evs, speed=0.50, skip={"compare"})
+        self.play_trace(tree, evs, speed=0.68, skip={"compare"})
 
         fin = self._rotulo(f"En esta corrida: {resumen}.", OK)
         self.play(FadeOut(rot), FadeIn(fin), run_time=0.45)

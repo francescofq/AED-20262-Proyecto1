@@ -13,16 +13,15 @@ DOCENTE = "Prof. Víctor Racsó Galván Oyola"
 TITULO = "Red-Black Tree"
 SUBTITULO = "Árbol Binario de Búsqueda auto-balanceado"
 
-# TODO(grupo): reemplazar por los nombres reales de los 3 integrantes
 INTEGRANTES = [
-    "Integrante 1 - Nombre Apellido",
-    "Integrante 2 - Nombre Apellido",
-    "Integrante 3 - Nombre Apellido",
+    "Jose Ruiz Lam — 202510050",
+    "Osmar Vilchez Aguirre — 202510122",
+    "Francesco Ferrante Quino — 202510174",
 ]
 
 # Quién narra / renderiza cada parte (para el informe, no aparece en el video)
 RESPONSABLES = {
-    "1/3": "Integrante 1",
-    "2/3": "Integrante 2",
-    "3/3": "Integrante 3",
+    "1/3": "Jose Ruiz Lam",
+    "2/3": "Osmar Vilchez Aguirre",
+    "3/3": "Francesco Ferrante Quino",
 }

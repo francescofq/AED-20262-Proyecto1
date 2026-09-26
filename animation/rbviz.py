@@ -86,8 +86,8 @@ HOLD = {"fixup_case": 0.35, "op_end": 0.20, "found": 0.30, "not_found": 0.30}
 #   TEMPO_TRACE -> velocidad de la animacion del arbol
 #   TEMPO_WAIT  -> pausas de lectura (todos los self.wait de las escenas)
 # --------------------------------------------------------------------------
-TEMPO_TRACE = 1.269
-TEMPO_WAIT = 1.269
+TEMPO_TRACE = 1.20
+TEMPO_WAIT = 1.00
 
 
 def wrap(text: str, width: int = 74) -> str:
@@ -156,7 +156,7 @@ def swap(holder: VGroup, *mobjects: Mobject) -> VGroup:
 # Vista del arbol
 # --------------------------------------------------------------------------
 class TreeView:
-    def __init__(self, scene: Scene, span: float = 10.4, top: float = 1.70,
+    def __init__(self, scene: Scene, span: float = 11.4, top: float = 1.70,
                  row: float = 1.10, radius: float = 0.33, max_col: float = 1.50):
         self.scene = scene
         self.span, self.top, self.row = span, top, row
@@ -168,25 +168,28 @@ class TreeView:
         self.edge_layer = always_redraw(self._build_edges)
         scene.add(self.edge_layer, self.node_layer)
 
-    def fit(self, events: list[dict], bottom: float = -1.95):
+    def fit(self, events: list[dict], bottom: float = -1.75, top: float = 2.05):
         """Fija la escala UNA vez, mirando el arbol mas grande de todo el trace.
 
         Se hace antes de animar para que la disposicion no salte de frame en
         frame: el espaciado se calcula con la profundidad y el ancho maximos
         que el arbol llegara a tener en esta escena.
         """
+        # bottom = -1.75 deja el borde inferior del nodo mas profundo en
+        # -2.08, con holgura sobre el rotulo que vive en -2.50. Antes se
+        # tocaban y parecia que los nodos se montaban sobre el texto.
         depths = [s["depth"] for e in events for s in e["nodes"]]
         widths = [max((s["order"] for s in e["nodes"]), default=0) + 1
                   for e in events]
         max_depth = max(depths, default=0)
         max_cols = max(widths, default=1)
         if max_depth > 0:
-            self.row = min(1.10, (self.top - bottom) / max_depth)
+            self.row = min(1.10, (top - bottom) / max_depth)
         if max_cols > 1:
             self.max_col = min(1.50, self.span / (max_cols - 1))
         # Centra verticalmente el arbol mas alto dentro del area disponible,
         # para que un arbol de 2 nodos no quede pegado al borde superior.
-        centro = (1.75 + bottom) / 2.0
+        centro = (top + bottom) / 2.0
         self.top = centro + (max_depth * self.row) / 2.0
         return self
 
@@ -225,8 +228,15 @@ class TreeView:
             opacity = float(min(a[0].get_fill_opacity(), b[0].get_fill_opacity()))
             if opacity <= 0.03:
                 continue
-            group.add(Line(a.get_center(), b.get_center(), stroke_color=EDGE,
-                           stroke_width=3.2, stroke_opacity=opacity * 0.9))
+            pa, pb = a.get_center(), b.get_center()
+            d = pb - pa
+            norma = float(np.linalg.norm(d))
+            if norma < 1e-6:
+                continue
+            u = d / norma
+            group.add(Line(pa + u * self.radius, pb - u * self.radius,
+                           stroke_color=EDGE, stroke_width=3.2,
+                           stroke_opacity=opacity * 0.9))
         return group
 
     @staticmethod
@@ -264,7 +274,13 @@ class TreeView:
                     ghost = node.copy().move_to(pos)
                     ghost[0].set_fill(fill).set_stroke(stroke)
                     ghost[1].move_to(pos)
-                    anims.append(Transform(node, ghost))
+                    # En una rotacion varios nodos cambian de lado a la vez. Si
+                    # todos van en linea recta se cruzan unos con otros y se ve
+                    # como un amontonamiento. Con un arco comun describen curvas
+                    # paralelas y se leen como un giro.
+                    dx = float(pos[0] - node.get_center()[0])
+                    arc = 0.45 if abs(dx) > 0.15 else 0.0
+                    anims.append(Transform(node, ghost, path_arc=arc))
             else:
                 node = self._make_node(snap, pos)   # sin set_opacity: FadeIn va 0 -> 1
                 self.nodes[nid] = node

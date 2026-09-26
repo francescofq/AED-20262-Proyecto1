@@ -130,16 +130,16 @@ class Parte1(RBScene):
     def construccion_real(self):
         self.set_caption("Construcción paso a paso, con la implementación en C++ detrás.")
         rotulo = Text("Insertando 41, 38, 31, 12, 19, 8", font_size=24, color=MUTED)
-        rotulo.move_to(DOWN * 2.45)
+        rotulo.move_to(DOWN * 2.50)
         self.play(FadeIn(rotulo), run_time=0.4)
 
         evs = events_of("p1_construccion")
         tree = TreeView(self).fit(evs)
-        self.play_trace(tree, evs, speed=0.55)
+        self.play_trace(tree, evs, speed=0.70, skip={"compare"})
 
         cierre = Text("El árbol se reacomodó solo en cada inserción.",
                       font_size=25, color=OK)
-        cierre.move_to(DOWN * 2.45)
+        cierre.move_to(DOWN * 2.50)
         self.play(FadeOut(rotulo), FadeIn(cierre), run_time=0.5)
         self.wait(1.6)
         self.play(FadeOut(cierre), run_time=0.4)

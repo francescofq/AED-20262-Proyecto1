@@ -41,7 +41,7 @@ class Parte3(RBScene):
 
     def _rotulo(self, texto: str, color: str = MUTED) -> Text:
         return fit_width(
-            Text(texto, font_size=24, color=color)).move_to(DOWN * 2.45)
+            Text(texto, font_size=24, color=color)).move_to(DOWN * 2.50)
 
     # ------------------------------------------------------------------
     def borde_arbol_vacio(self):
@@ -62,14 +62,14 @@ class Parte3(RBScene):
     # ------------------------------------------------------------------
     def borde_peor_caso(self):
         self.set_caption("Caso borde 2: el peor caso de un BST, insertar ya ordenado.")
-        rot = self._rotulo("Insertando 1, 2, 3, ... 10 en orden creciente")
+        rot = self._rotulo("Insertando 1, 2, 3, ... 8 en orden creciente")
         self.play(FadeIn(rot), run_time=0.35)
 
         evs = events_of("p3_borde_ordenado")
         tree = TreeView(self).fit(evs)
-        self.play_trace(tree, evs, speed=0.42, skip={"compare"})
+        self.play_trace(tree, evs, speed=0.62, skip={"compare"})
 
-        fin = self._rotulo("Un BST normal habría quedado en 10 niveles. Este quedó en 5.", OK)
+        fin = self._rotulo("Un BST normal habría quedado en 8 niveles. Este quedó en 4.", OK)
         self.play(FadeOut(rot), FadeIn(fin), run_time=0.45)
         self.wait(1.9)
         self.play(FadeOut(fin), run_time=0.35)
@@ -124,7 +124,7 @@ class Parte3(RBScene):
 
         evs = events_of("p3_busqueda")
         tree = TreeView(self).fit(evs)
-        self.play_trace(tree, evs, speed=1.0)
+        self.play_trace(tree, evs, speed=1.15)
 
         fin = self._rotulo("Cada comparación descarta la mitad del árbol.", OK)
         self.play(FadeOut(rot), FadeIn(fin), run_time=0.45)
@@ -140,7 +140,7 @@ class Parte3(RBScene):
 
         evs = events_of("p3_eliminacion")
         tree = TreeView(self).fit(evs)
-        self.play_trace(tree, evs, speed=0.95)
+        self.play_trace(tree, evs, speed=1.10)
 
         fin = self._rotulo("En estas dos eliminaciones se dispararon los 4 casos de fix_delete.", OK)
         self.play(FadeOut(rot), FadeIn(fin), run_time=0.45)
