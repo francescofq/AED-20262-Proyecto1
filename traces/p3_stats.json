@@ -1,0 +1,9 @@
+{
+  "comparacion": [
+    {"n": 10, "altura_rbt": 5, "altura_bst": 10, "altura_negra": 4, "cota_2log2": 8, "propiedades_ok": true},
+    {"n": 100, "altura_rbt": 11, "altura_bst": 100, "altura_negra": 7, "cota_2log2": 14, "propiedades_ok": true},
+    {"n": 1000, "altura_rbt": 17, "altura_bst": 1000, "altura_negra": 10, "cota_2log2": 20, "propiedades_ok": true},
+    {"n": 10000, "altura_rbt": 24, "altura_bst": 10000, "altura_negra": 13, "cota_2log2": 28, "propiedades_ok": true},
+    {"n": 100000, "altura_rbt": 31, "altura_bst": 100000, "altura_negra": 17, "cota_2log2": 34, "propiedades_ok": true}
+  ]
+}

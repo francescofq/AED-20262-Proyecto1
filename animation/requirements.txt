@@ -1,0 +1,4 @@
+# Animacion del Red-Black Tree - CS2023 Proyecto Final 1
+# Python 3.12 recomendado (Manim 0.21 aun no soporta 3.14).
+manim==0.21.0
+imageio-ffmpeg>=0.5        # binario de ffmpeg, solo para unir las 3 partes

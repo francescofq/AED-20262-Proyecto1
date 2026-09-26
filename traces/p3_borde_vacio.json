@@ -1,0 +1,9 @@
+{
+  "title": "Parte 3 - Caso borde: árbol vacío",
+  "events": [
+    {"step": 0, "op": "insert", "key": 7, "action": "op_begin", "detail": "Insertar 7", "case": "", "root": -1, "black_height": 1, "valid": true, "focus": [], "secondary": [], "nodes": []},
+    {"step": 1, "op": "insert", "key": 7, "action": "attach", "detail": "Inserto 7 como hoja ROJA", "case": "", "root": 0, "black_height": 1, "valid": false, "focus": [0], "secondary": [], "nodes": [{"id": 0, "value": 7, "color": "R", "parent": -1, "left": -1, "right": -1, "depth": 0, "order": 0}]},
+    {"step": 2, "op": "insert", "key": 7, "action": "root_black", "detail": "La raíz siempre vuelve a NEGRO (propiedad 2)", "case": "", "root": 0, "black_height": 2, "valid": true, "focus": [0], "secondary": [], "nodes": [{"id": 0, "value": 7, "color": "B", "parent": -1, "left": -1, "right": -1, "depth": 0, "order": 0}]},
+    {"step": 3, "op": "insert", "key": 7, "action": "op_end", "detail": "Listo: 7 insertado, altura negra = 2", "case": "", "root": 0, "black_height": 2, "valid": true, "focus": [], "secondary": [], "nodes": [{"id": 0, "value": 7, "color": "B", "parent": -1, "left": -1, "right": -1, "depth": 0, "order": 0}]}
+  ]
+}

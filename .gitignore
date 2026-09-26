@@ -1,0 +1,14 @@
+# Binario compilado
+rbtree
+
+# Entorno virtual y salidas de Manim
+animation/.venv/
+animation/media/
+animation/__pycache__/
+__pycache__/
+
+# IDE
+.idea/
+build/
+cmake-build-*/
+main
