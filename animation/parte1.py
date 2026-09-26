@@ -129,7 +129,7 @@ class Parte1(RBScene):
     # ------------------------------------------------------------------
     def construccion_real(self):
         self.set_caption("Construcción paso a paso, con la implementación en C++ detrás.")
-        rotulo = Text("Insertando 41, 38, 31, 12, 19, 8", font_size=24, color=MUTED)
+        rotulo = Text("Insertando 41, 38, 31, 12", font_size=24, color=MUTED)
         rotulo.move_to(DOWN * 2.50)
         self.play(FadeIn(rotulo), run_time=0.4)
 
@@ -141,7 +141,7 @@ class Parte1(RBScene):
                       font_size=25, color=OK)
         cierre.move_to(DOWN * 2.50)
         self.play(FadeOut(rotulo), FadeIn(cierre), run_time=0.5)
-        self.wait(1.6)
+        self.wait(1.3)
         self.play(FadeOut(cierre), run_time=0.4)
         tree.reset(self)
 

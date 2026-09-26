@@ -110,7 +110,7 @@ Salidas:
 | `animation/media/videos/parte1/1080p60/Parte1.mp4` | Parte 1 — Qué es, TDA y propiedades |
 | `animation/media/videos/parte2/1080p60/Parte2.mp4` | Parte 2 — Inserción y rebalanceo |
 | `animation/media/videos/parte3/1080p60/Parte3.mp4` | Parte 3 — Casos borde, eliminación y complejidad |
-| `video_final.mp4` | **el entregable**: las 3 partes concatenadas (~3:52) |
+| `video_final.mp4` | **el entregable**: las 3 partes concatenadas (4:26) |
 
 ### Ajustar la duración
 
@@ -118,13 +118,20 @@ Las dos perillas al inicio de `animation/rbviz.py` controlan el ritmo de todo
 el video sin tocar ninguna escena:
 
 ```python
-TEMPO_TRACE = 1.20   # velocidad de la animación del árbol
+TEMPO_TRACE = 1.30   # velocidad de la animación del árbol
 TEMPO_WAIT  = 1.00   # pausas de lectura
 ```
 
-Con los valores actuales el video dura 3:52. Subir `TEMPO_TRACE` hace las
+Con los valores actuales el video dura 4:26. Subir `TEMPO_TRACE` hace las
 transiciones más lentas (y el video más largo); el límite del proyecto son
 5 minutos.
+
+Para saber cuánto va a durar **sin renderizar**, y de paso obtener la duración
+de cada escena:
+
+```bash
+python3 animation/timing.py
+```
 
 ---
 
@@ -165,6 +172,7 @@ cd animation
 ├── main.cpp                genera traces/*.json y la demo por consola
 ├── CMakeLists.txt
 ├── render_all.sh           pipeline completo: C++ → traces → 3 videos → final
+├── guion.md                guion de narración por parte, con marcas de tiempo
 ├── traces/                 eventos generados por la implementación (evidencia)
 └── animation/
     ├── config_video.py     ← nombres de los integrantes (EDITAR)
@@ -172,6 +180,7 @@ cd animation
     ├── parte1.py           Parte 1/3
     ├── parte2.py           Parte 2/3
     ├── parte3.py           Parte 3/3
+    ├── timing.py           calcula la duración de cada escena sin renderizar
     └── requirements.txt
 ```
 

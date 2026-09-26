@@ -62,14 +62,14 @@ class Parte3(RBScene):
     # ------------------------------------------------------------------
     def borde_peor_caso(self):
         self.set_caption("Caso borde 2: el peor caso de un BST, insertar ya ordenado.")
-        rot = self._rotulo("Insertando 1, 2, 3, ... 8 en orden creciente")
+        rot = self._rotulo("Insertando 1, 2, 3, ... 6 en orden creciente")
         self.play(FadeIn(rot), run_time=0.35)
 
         evs = events_of("p3_borde_ordenado")
         tree = TreeView(self).fit(evs)
         self.play_trace(tree, evs, speed=0.62, skip={"compare"})
 
-        fin = self._rotulo("Un BST normal habría quedado en 8 niveles. Este quedó en 4.", OK)
+        fin = self._rotulo("Un BST normal sería una cadena de 6 niveles. Este quedó en 4.", OK)
         self.play(FadeOut(rot), FadeIn(fin), run_time=0.45)
         self.wait(1.9)
         self.play(FadeOut(fin), run_time=0.35)

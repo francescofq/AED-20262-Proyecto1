@@ -21,7 +21,7 @@ INTEGRANTES = [
 
 # Quién narra / renderiza cada parte (para el informe, no aparece en el video)
 RESPONSABLES = {
-    "1/3": "Jose Ruiz Lam",
-    "2/3": "Osmar Vilchez Aguirre",
-    "3/3": "Francesco Ferrante Quino",
+    "1/3": "Francesco Ferrante Quino",
+    "2/3": "Jose Ruiz Lam",
+    "3/3": "Osmar Vilchez Aguirre",
 }

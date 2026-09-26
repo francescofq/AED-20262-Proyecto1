@@ -72,13 +72,18 @@ FOCUS_ACTIONS = {"compare", "attach", "recolor", "rotate_left", "rotate_right",
                  "fixup_case", "root_black", "found", "target", "successor",
                  "transplant", "double_black"}
 
+# Duracion base de cada tipo de paso, en segundos. Los pasos donde algo
+# aparece o se mueve (attach, rotaciones, recoloreos) van mas lentos que los
+# de puro texto: son los que hay que alcanzar a ver.
 RUN_TIME = {
-    "op_begin": 0.45, "compare": 0.45, "attach": 0.65, "fixup_case": 0.95,
-    "recolor": 0.60, "rotate_left": 1.00, "rotate_right": 1.00,
-    "root_black": 0.55, "target": 0.55, "successor": 0.70, "transplant": 0.75,
-    "double_black": 0.85, "found": 0.70, "not_found": 0.70, "op_end": 0.40,
+    "op_begin": 0.55, "compare": 0.50, "attach": 1.10, "fixup_case": 1.05,
+    "recolor": 0.85, "rotate_left": 1.35, "rotate_right": 1.35,
+    "root_black": 0.75, "target": 0.70, "successor": 0.85, "transplant": 0.95,
+    "double_black": 1.00, "found": 0.85, "not_found": 0.85, "op_end": 0.45,
 }
-HOLD = {"fixup_case": 0.35, "op_end": 0.20, "found": 0.30, "not_found": 0.30}
+HOLD = {"attach": 0.25, "fixup_case": 0.35, "rotate_left": 0.20,
+        "rotate_right": 0.20, "recolor": 0.15, "op_end": 0.20,
+        "found": 0.30, "not_found": 0.30}
 
 # --------------------------------------------------------------------------
 # Ritmo global. Se ajustan estos dos numeros para cuadrar la duracion total
@@ -86,7 +91,7 @@ HOLD = {"fixup_case": 0.35, "op_end": 0.20, "found": 0.30, "not_found": 0.30}
 #   TEMPO_TRACE -> velocidad de la animacion del arbol
 #   TEMPO_WAIT  -> pausas de lectura (todos los self.wait de las escenas)
 # --------------------------------------------------------------------------
-TEMPO_TRACE = 1.20
+TEMPO_TRACE = 1.30
 TEMPO_WAIT = 1.00
 
 

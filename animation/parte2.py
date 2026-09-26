@@ -87,7 +87,7 @@ class Parte2(RBScene):
 
         fin = self._rotulo(cierre, OK)
         self.play(FadeOut(rot), FadeIn(fin), run_time=0.45)
-        self.wait(1.7)
+        self.wait(1.4)
         self.play(FadeOut(fin), run_time=0.35)
         tree.reset(self)
 
@@ -131,7 +131,7 @@ class Parte2(RBScene):
             if conteo.get(c))
 
         self.set_caption("Ahora los tres casos juntos, sobre un árbol que va creciendo.")
-        rot = self._rotulo("Insertando 7, 3, 18, 10, 22, 8, 11, 26, 2")
+        rot = self._rotulo("Insertando 7, 3, 18, 10, 22, 8, 11, 26")
         self.play(FadeIn(rot), run_time=0.35)
 
         tree = TreeView(self).fit(evs)
